@@ -1,28 +1,30 @@
-import { searchImages } from './pixabay-api';
-import { renderImages } from './render-functions';
-import './css-loader/dist/css-loader.min.css';
-
-let searchQuery = '';
+import { fetchImages } from './pixabay-api.js';
+import { displayImages } from './render-functions.js';
 
 const searchForm = document.getElementById('search-form');
-searchForm.addEventListener('submit', async event => {
-  event.preventDefault();
+const searchInput = document.getElementById('search-input');
+const loader = document.querySelector('.loader');
 
-  searchQuery = document.getElementById('search-input').value.trim();
-  if (!searchQuery) {
-    Toast.error('Please enter a search query');
+searchForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const searchQuery = searchInput.value.trim();
+
+  if (searchQuery === '') {
+    iziToast.error({
+      title: 'Error',
+      message: 'Please enter a search keyword',
+    });
     return;
   }
 
-  const loadingIndicator = document.getElementById('loading-indicator');
-  loadingIndicator.style.display = 'block';
+  loader.style.display = 'block';
 
   try {
-    const images = await searchImages(searchQuery);
-    renderImages(images);
+    const images = await fetchImages(searchQuery);
+    displayImages(images);
   } catch (error) {
-    console.error('Error while rendering images:', error);
+    console.error(error);
   } finally {
-    loadingIndicator.style.display = 'none';
+    loader.style.display = 'none';
   }
 });

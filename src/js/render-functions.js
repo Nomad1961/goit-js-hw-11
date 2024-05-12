@@ -1,31 +1,25 @@
+import iziToast from 'izitoast';
 import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import { Toast } from 'izitoast';
+export function displayImages(images) {
+  const gallery = document.querySelector('.gallery');
+  gallery.innerHTML = '';
 
-import 'izitoast/dist/css/iziToast.min.css';
+  if (images.length === 0) {
+    iziToast.error({
+      title: 'Error',
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+    });
+  } else {
+    images.forEach(image => {
+      const imageCard = document.createElement('div');
+      imageCard.classList.add('image-card');
+      // Create card layout with image properties
+      gallery.appendChild(imageCard);
+    });
 
-const renderImages = async images => {
-  const galleryContainer = document.getElementById('gallery');
-  galleryContainer.innerHTML = '';
-
-  if (!images || images.length === 0) {
-    Toast.error(
-      'Sorry, there are no images matching your search query. Please try again!'
-    );
-    return;
+    // Initialize SimpleLightbox
+    new SimpleLightbox('.gallery a');
   }
-
-  images.forEach(image => {
-    const imageHTML = `
-      <a href="${image.largeImageURL}" data-lightbox="gallery">
-        <img src="${image.webformatURL}" alt="${image.tags}" />
-      </a>
-    `;
-    galleryContainer.insertAdjacentHTML('beforeend', imageHTML);
-  });
-
-  SimpleLightbox.refresh();
-};
-
-export { renderImages };
+}
