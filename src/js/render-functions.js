@@ -15,11 +15,10 @@ export function displayImages(images) {
     images.forEach(image => {
       const imageCard = document.createElement('div');
       imageCard.classList.add('image-card');
-      // Create card layout with image properties
+
       gallery.appendChild(imageCard);
     });
 
-    // Initialize SimpleLightbox
     new SimpleLightbox('.gallery a');
   }
 }
