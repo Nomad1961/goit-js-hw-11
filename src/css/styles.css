@@ -1,25 +1,75 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-@import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
+/* body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+#gallery img {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+#loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+}
+
+#loading-indicator p {
+  margin-bottom: 10px;
+}
+
+iziToast {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+} */
+/* ННННННННННННННННННННННННННННННННННННННННННННННННННННННННННННН */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#gallery img {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+}
+
+#loading-indicator p {
+  margin-bottom: 10px;
+}
+
+iziToast {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
 }
