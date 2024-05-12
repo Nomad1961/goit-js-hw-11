@@ -2,6 +2,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { Toast } from 'izitoast';
+
 import 'izitoast/dist/css/iziToast.min.css';
 
 const renderImages = async images => {
