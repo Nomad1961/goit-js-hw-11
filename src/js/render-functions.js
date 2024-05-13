@@ -1,24 +1,26 @@
-import iziToast from 'izitoast';
-import SimpleLightbox from 'simplelightbox';
+export function renderImages(images) {
+  // Получаем ссылку на контейнер галереи
+  const galleryContainer = document.getElementById('gallery');
 
-export function displayImages(images) {
-  const gallery = document.querySelector('.gallery');
-  gallery.innerHTML = '';
+  // Очищаем контейнер галереи
+  galleryContainer.innerHTML = '';
 
-  if (images.length === 0) {
-    iziToast.error({
-      title: 'Error',
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
-    });
-  } else {
-    images.forEach(image => {
-      const imageCard = document.createElement('div');
-      imageCard.classList.add('image-card');
+  // Перебираем массив изображений
+  images.forEach(image => {
+    // Создаем элемент img для каждого изображения
+    const imageElement = document.createElement('img');
+    imageElement.src = image.url;
+    imageElement.alt = image.title;
 
-      gallery.appendChild(imageCard);
-    });
+    // Добавляем элемент img в контейнер галереи
+    galleryContainer.appendChild(imageElement);
+  });
+}
 
-    new SimpleLightbox('.gallery a');
-  }
+export function clearGallery() {
+  // Получаем ссылку на контейнер галереи
+  const galleryContainer = document.getElementById('gallery');
+
+  // Очищаем контейнер галереи
+  galleryContainer.innerHTML = '';
 }
