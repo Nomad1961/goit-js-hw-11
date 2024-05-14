@@ -1,26 +1,36 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Search</title>
+    <title>Image Search App</title>
+    
     
     <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-f33cd494.js">
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-3d7c85c5.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-8501dee5.js">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-a088063d.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-ef5082b0.css">
   </head>
   <body>
     <form id="search-form">
       <input
         type="text"
         id="search-input"
-        placeholder="Enter a search keyword"
+        placeholder="Enter your search term"
       />
       <button type="submit">Search</button>
     </form>
-    <div class="gallery"></div>
-    <span class="loader"></span>
+    <div id="gallery" class="simplelightbox"></div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <span class="close-button">&times;</span>
+      <img class="modal-content" id="modal-img" />
+      <div id="caption"></div>
+    </div>
 
     
+    <script src="../node_modules/simplelightbox/dist/simple-lightbox.min.js"></script>
   </body>
 </html>
