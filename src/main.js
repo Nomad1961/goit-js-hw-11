@@ -1,7 +1,7 @@
 // main.js
 import iziToast from 'izitoast';
-import { fetchImages } from './api/pixabay-api.js';
-import { displayImages } from './render-functions.js';
+import { fetchImages } from './js/pixabay-api.js';
+import { displayImages } from './js/render-functions.js';
 import SimpleLightbox from 'simplelightbox';
 
 const searchForm = document.getElementById('search-form');
