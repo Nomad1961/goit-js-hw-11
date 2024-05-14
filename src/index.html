@@ -1,19 +1,35 @@
->
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Search App</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/simplelightbox/dist/simple-lightbox.min.css"
+    />
   </head>
   <body>
     <form id="search-form">
-      <input type="text" id="search-input" placeholder="Enter search term" />
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Enter your search term"
+      />
       <button type="submit">Search</button>
     </form>
-    <div class="loader"></div>
-    <div class="gallery"></div>
+    <div id="gallery" class="simplelightbox"></div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <span class="close-button">&times;</span>
+      <img class="modal-content" id="modal-img" />
+      <div id="caption"></div>
+    </div>
+
     <script type="module" src="main.js"></script>
+    <script src="../node_modules/simplelightbox/dist/simple-lightbox.min.js"></script>
   </body>
 </html>

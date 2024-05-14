@@ -1,26 +1,39 @@
-export function renderImages(images) {
-  // Получаем ссылку на контейнер галереи
-  const galleryContainer = document.getElementById('gallery');
+// render-functions.js
+import iziToast from 'izitoast'; // Added import statement for iziToast
 
-  // Очищаем контейнер галереи
-  galleryContainer.innerHTML = '';
+export function displayImages(images) {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = '';
 
-  // Перебираем массив изображений
-  images.forEach(image => {
-    // Создаем элемент img для каждого изображения
-    const imageElement = document.createElement('img');
-    imageElement.src = image.url;
-    imageElement.alt = image.title;
-
-    // Добавляем элемент img в контейнер галереи
-    galleryContainer.appendChild(imageElement);
-  });
+  if (images.length === 0) {
+    iziToast.error({
+      title: 'Error',
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+    });
+  } else {
+    images.forEach(image => {
+      const imgElement = document.createElement('img');
+      imgElement.src = image.webformatURL;
+      imgElement.alt = image.tags;
+      imgElement.dataset.largeImage = image.largeImageURL;
+      imgElement.dataset.likes = image.likes;
+      imgElement.dataset.views = image.views;
+      imgElement.dataset.comments = image.comments;
+      imgElement.dataset.downloads = image.downloads;
+      imgElement.addEventListener('click', showModal);
+      gallery.appendChild(imgElement);
+    });
+  }
 }
 
-export function clearGallery() {
-  // Получаем ссылку на контейнер галереи
-  const galleryContainer = document.getElementById('gallery');
+function showModal(event) {
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const caption = document.getElementById('caption');
+  const img = event.target;
 
-  // Очищаем контейнер галереи
-  galleryContainer.innerHTML = '';
+  modal.style.display = 'block';
+  modalImg.src = img.dataset.largeImage;
+  caption.textContent = `Likes: ${img.dataset.likes}, Views: ${img.dataset.views}, Comments: ${img.dataset.comments}, Downloads: ${img.dataset.downloads}`;
 }
