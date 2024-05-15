@@ -22,22 +22,20 @@ searchForm.addEventListener('submit', async e => {
 
     const lightbox = new SimpleLightbox('.simplelightbox a', {
       elements: '.simplelightbox',
-      closeText: 'Закрыть', // Fixed typo in the closeText property
+      closeText: 'Закрыть',
       docClose: true,
     });
     lightbox.refresh();
   }
 });
-// =====================================
-// Добавляем обработку индикатора загрузки перед и после запроса к бекенду
+// ===========индикатор загрузки==========================
+
 searchForm.addEventListener('submit', async e => {
   e.preventDefault();
   const searchTerm = searchInput.value.trim();
 
-  // Очищаем предыдущие результаты поиска
   gallery.innerHTML = '';
 
-  // Показываем индикатор загрузки
   const loader = document.querySelector('.loader');
   loader.style.display = 'block';
 
@@ -63,13 +61,12 @@ searchForm.addEventListener('submit', async e => {
         message: 'An error occurred while fetching images. Please try again.',
       });
     } finally {
-      // Скрываем индикатор загрузки после завершения запроса
       loader.style.display = 'none';
     }
   }
 });
-// ------------------------------------
-// ...
+// -----------close_buttom-------------------------
+
 const closeButton = document.querySelector('.close-button');
 const modal = document.getElementById('modal');
 
@@ -82,3 +79,73 @@ window.addEventListener('click', event => {
     modal.style.display = 'none';
   }
 });
+
+// preview-next=====================
+
+let currentIndex = 0;
+let totalImages = 0;
+let images = [];
+
+function showGalleryNavigation() {
+  const prevNav = document.querySelector('.gallery-nav.prev');
+  const nextNav = document.querySelector('.gallery-nav.next');
+
+  prevNav.style.display = currentIndex > 0 ? 'block' : 'none';
+  nextNav.style.display = currentIndex < totalImages - 1 ? 'block' : 'none';
+}
+
+document.querySelectorAll('.gallery-nav').forEach(nav => {
+  nav.addEventListener('click', () => {
+    if (nav.classList.contains('prev')) {
+      currentIndex = Math.max(currentIndex - 1, 0);
+    } else {
+      currentIndex = Math.min(currentIndex + 1, totalImages - 1);
+    }
+    showModal(currentIndex);
+    showGalleryNavigation();
+  });
+});
+
+function showModal(index) {
+  const modal = document.getElementById('modal');
+  const modalImage = document.getElementById('modalImage');
+  const caption = document.getElementById('caption');
+
+  modal.style.display = 'block';
+  modalImage.src = images[index].src;
+  caption.textContent = images[index].alt;
+
+  showGalleryNavigation();
+}
+
+document.getElementById('modalImage').addEventListener('mouseover', () => {
+  document.querySelectorAll('.gallery-nav').forEach(nav => {
+    nav.style.display = 'block';
+  });
+});
+
+document.getElementById('modalImage').addEventListener('mouseout', () => {
+  document.querySelectorAll('.gallery-nav').forEach(nav => {
+    nav.style.display = 'none';
+  });
+});
+
+function addImagesToGallery(imageData) {
+  const gallery = document.getElementById('gallery');
+  images = imageData;
+  totalImages = images.length;
+
+  images.forEach((image, index) => {
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    img.addEventListener('click', () => {
+      showModal(index);
+    });
+    gallery.appendChild(img);
+  });
+
+  showGalleryNavigation();
+}
+
+addImagesToGallery(imageData);
