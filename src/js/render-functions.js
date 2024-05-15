@@ -1,5 +1,6 @@
-// render-functions.js
-import iziToast from 'izitoast'; // Added import statement for iziToast
+// // // render-functions.js
+
+import iziToast from 'izitoast';
 
 export function displayImages(images) {
   const gallery = document.getElementById('gallery');
@@ -22,7 +23,19 @@ export function displayImages(images) {
       imgElement.dataset.comments = image.comments;
       imgElement.dataset.downloads = image.downloads;
       imgElement.addEventListener('click', showModal);
-      gallery.appendChild(imgElement);
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.appendChild(imgElement);
+      const info = document.createElement('div');
+      info.className = 'info';
+      info.innerHTML = `
+        <p>Likes: ${image.likes}</p>
+        <p>Views: ${image.views}</p>
+        <p>Comments: ${image.comments}</p>
+        <p>Downloads: ${image.downloads}</p>
+      `;
+      card.appendChild(info);
+      gallery.appendChild(card);
     });
   }
 }
