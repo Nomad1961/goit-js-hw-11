@@ -1,8 +1,18 @@
 // main.js
+// Описаний у документації
 import iziToast from 'izitoast';
+// Додатковий імпорт стилів
+import 'izitoast/dist/css/iziToast.min.css';
+
+// import iziToast from 'izitoast';
 import { fetchImages } from './js/pixabay-api.js';
 import { displayImages } from './js/render-functions.js';
+// Описаний у документації
 import SimpleLightbox from 'simplelightbox';
+// Додатковий імпорт стилів
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+// import SimpleLightbox from 'simplelightbox';
 
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
