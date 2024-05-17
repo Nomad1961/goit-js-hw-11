@@ -17,6 +17,12 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
 
+const lightbox = new SimpleLightbox('.simplelightbox a', {
+  elements: '.simplelightbox',
+  closeText: 'Закрыть',
+  docClose: true,
+});
+
 searchForm.addEventListener('submit', async e => {
   e.preventDefault();
   const searchTerm = searchInput.value.trim();
@@ -58,12 +64,13 @@ searchForm.addEventListener('submit', async e => {
     try {
       const images = await fetchImages(searchTerm);
       displayImages(images);
-
-      const lightbox = new SimpleLightbox('.simplelightbox a', {
-        elements: '.simplelightbox',
-        closeText: 'Закрыть',
-        docClose: true,
-      });
+      // ---------------------------------------------------------
+      // const lightbox = new SimpleLightbox('.simplelightbox a', {
+      //   elements: '.simplelightbox',
+      //   closeText: 'Закрыть',
+      //   docClose: true,
+      // });
+      // ---------------------------------------------------
       lightbox.refresh();
     } catch (error) {
       iziToast.error({
