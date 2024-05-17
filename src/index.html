@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Search App</title>
     <link rel="stylesheet" href="./css/styles.css" />
-    <!-- <link
-      rel="stylesheet"
-      href="../node_modules/simplelightbox/dist/simple-lightbox.min.css"
-    /> -->
   </head>
   <body>
-    <span class="loader"></span>
+    <span class="loader" style="display: none"></span>
     <form id="search-form">
       <input
         type="text"
         id="search-input"
-        placeholder="Enter your search term"
+        placeholder="Введите поисковый запрос"
       />
       <button type="submit">Search</button>
     </form>
@@ -27,17 +22,17 @@
       <span class="close-button">&times;</span>
       <img class="modal-content" id="modal-img" />
       <div id="caption"></div>
+
+      <div class="gallery-nav">
+        <div class="gallery-nav-prev">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="gallery-nav-next">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
     </div>
 
-    <div class="gallery-nav.prev" style="display: none">
-      <i class="fas fa-chevron-left"></i>
-    </div>
-    <div class="gallery-nav.next" style="display: none">
-      <i class="fas fa-chevron-right"></i>
-    </div>
-
-    <!-- <script type="module" src="main.js"></script> -->
     <script type="module" src="./main.js"></script>
-    <!-- <script src="../node_modules/simplelightbox/dist/simple-lightbox.min.js"></script> -->
   </body>
 </html>
