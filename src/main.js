@@ -1,12 +1,8 @@
 import iziToast from 'izitoast';
-
 import 'izitoast/dist/css/iziToast.min.css';
-
 import { fetchImages } from './js/pixabay-api.js';
 import { displayImages } from './js/render-functions.js';
-
 import SimpleLightbox from 'simplelightbox';
-
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const searchForm = document.getElementById('search-form');
@@ -48,8 +44,6 @@ searchForm.addEventListener('submit', async e => {
   }
 });
 
-// -----------close_buttom-------------------------
-
 const closeButton = document.querySelector('.close-button');
 const modal = document.getElementById('modal');
 
@@ -62,66 +56,3 @@ window.addEventListener('click', event => {
     modal.style.display = 'none';
   }
 });
-
-// preview-next=====================
-
-let currentIndex = 0;
-let totalImages = 0;
-let images = [];
-
-function showGalleryNavigation() {
-  const prevNav = document.querySelector('.gallery-nav-prev');
-  const nextNav = document.querySelector('.gallery-nav-next');
-
-  prevNav.style.display = currentIndex > 0 ? 'block' : 'none';
-  nextNav.style.display = currentIndex < totalImages - 1 ? 'block' : 'none';
-}
-
-document
-  .querySelectorAll('.gallery-nav-prev, .gallery-nav-next')
-  .forEach(nav => {
-    nav.addEventListener('click', () => {
-      if (nav.classList.contains('gallery-nav-prev')) {
-        currentIndex = Math.max(currentIndex - 1, 0);
-      } else {
-        currentIndex = Math.min(currentIndex + 1, totalImages - 1);
-      }
-      showModal(currentIndex);
-      showGalleryNavigation();
-    });
-  });
-
-document.getElementById('modal-img').addEventListener('mouseover', () => {
-  document
-    .querySelectorAll('.gallery-nav-prev, .gallery-nav-next')
-    .forEach(nav => {
-      nav.style.display = 'none';
-    });
-});
-
-document.getElementById('modal-img').addEventListener('mouseout', () => {
-  document
-    .querySelectorAll('.gallery-nav-prev, .gallery-nav-next')
-    .forEach(nav => {
-      nav.style.display = 'block';
-    });
-});
-function addImagesToGallery(imageData) {
-  const gallery = document.getElementById('gallery');
-  images = imageData;
-  totalImages = images.length;
-
-  images.forEach((image, index) => {
-    const img = document.createElement('img');
-    img.src = image.src;
-    img.alt = image.alt;
-    img.addEventListener('click', () => {
-      showModal(index);
-    });
-    gallery.appendChild(img);
-  });
-
-  showGalleryNavigation();
-}
-
-addImagesToGallery(imageData);
