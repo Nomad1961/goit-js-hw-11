@@ -8,6 +8,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
 const loader = document.querySelector('.loader');
+const gallery = document.getElementById('gallery');
 
 searchForm.addEventListener('submit', async e => {
   e.preventDefault();
@@ -24,7 +25,7 @@ searchForm.addEventListener('submit', async e => {
   } else {
     try {
       const images = await fetchImages(searchTerm);
-      displayImages(images);
+      displayImages(images, gallery);
 
       const lightbox = new SimpleLightbox('.simplelightbox a', {
         elements: '.simplelightbox',
