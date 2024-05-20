@@ -9,6 +9,13 @@ const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
 const loader = document.querySelector('.loader');
 const gallery = document.getElementById('gallery');
+const modal = document.getElementById('modal');
+
+let lightbox = new SimpleLightbox('.simplelightbox a', {
+  elements: '.simplelightbox',
+  closeText: 'Close',
+  docClose: true,
+});
 
 searchForm.addEventListener('submit', async e => {
   e.preventDefault();
@@ -27,11 +34,6 @@ searchForm.addEventListener('submit', async e => {
       const images = await fetchImages(searchTerm);
       displayImages(images, gallery);
 
-      const lightbox = new SimpleLightbox('.simplelightbox a', {
-        elements: '.simplelightbox',
-        closeText: 'Закрыть',
-        docClose: true,
-      });
       lightbox.refresh();
     } catch (error) {
       iziToast.error({
@@ -42,18 +44,5 @@ searchForm.addEventListener('submit', async e => {
       loader.style.display = 'none';
       searchInput.value = '';
     }
-  }
-});
-
-const closeButton = document.querySelector('.close-button');
-const modal = document.getElementById('modal');
-
-closeButton.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-
-window.addEventListener('click', event => {
-  if (event.target === modal) {
-    modal.style.display = 'none';
   }
 });

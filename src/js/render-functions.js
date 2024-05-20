@@ -11,18 +11,16 @@ export function displayImages(images, gallery) {
     });
   } else {
     const imageElements = images.map(image => {
+      const card = document.createElement('div');
+      card.className = 'card';
       const imgElement = document.createElement('img');
       imgElement.src = image.webformatURL;
       imgElement.alt = image.tags;
-      imgElement.dataset.largeImage = image.largeImageURL;
-      imgElement.dataset.likes = image.likes;
-      imgElement.dataset.views = image.views;
-      imgElement.dataset.comments = image.comments;
-      imgElement.dataset.downloads = image.downloads;
-      imgElement.addEventListener('click', showModal);
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.appendChild(imgElement);
+      const aElement = document.createElement('a');
+      aElement.href = image.largeImageURL;
+      aElement.className = 'simplelightbox';
+      aElement.appendChild(imgElement);
+      card.appendChild(aElement);
       const info = document.createElement('div');
       info.className = 'info';
       info.innerHTML = `
@@ -37,15 +35,4 @@ export function displayImages(images, gallery) {
 
     gallery.append(...imageElements);
   }
-}
-
-function showModal(event) {
-  const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modal-img');
-  const caption = document.getElementById('caption');
-  const img = event.target;
-
-  modal.style.display = 'block';
-  modalImg.src = img.dataset.largeImage;
-  caption.textContent = `Likes: ${img.dataset.likes}, Views: ${img.dataset.views}, Comments: ${img.dataset.comments}, Downloads: ${img.dataset.downloads}`;
 }

@@ -78,7 +78,7 @@ button {
 
 .close-button {
   color: #3cd316;
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 35px;
   font-size: 40px;
